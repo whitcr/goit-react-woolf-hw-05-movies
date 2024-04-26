@@ -1,0 +1,15 @@
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+
+  background-color: #007bff;
+  padding: 10px;
+}
+
+.NavLink {
+  text-decoration: none;
+}
+.active {
+  color: rgb(254, 255, 251);
+}
