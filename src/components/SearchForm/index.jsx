@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './index.css';
 const SearchForm = () => {
-  const [SearchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const SearchForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams({ name: SearchValue });
+    setSearchParams({ name: searchValue });
   };
 
   return (
@@ -27,7 +27,7 @@ const SearchForm = () => {
       <input
         type="text"
         placeholder="Enter movie name"
-        value={SearchValue}
+        value={searchValue}
         onChange={handleOnChange}
         style={{
           padding: '10px',

@@ -24,50 +24,56 @@ const MovieDetails = () => {
   return (
     <div>
       <Link to={backLink}>Go back</Link>
-      <div className="movie-details">
+      {movieDetails && (
         <div>
-          <img
-            src={
-              movieDetails.poster_path
-                ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
-                : defaultImg
-            }
-            width={250}
-            alt="poster"
-          />
-        </div>
-        <div>
-          <h1>{movieDetails.title}</h1>
-          <p>User Score: {movieDetails.vote_average}%</p>
-          <p>{movieDetails.overview}</p>
-          <p>
-            <strong>Overview</strong>
-          </p>
-          <p>{movieDetails.overview}</p>
-          <p>
-            <strong> Genres</strong>
-          </p>
-          <p>
-            {movieDetails.genres &&
-              movieDetails.genres.length > 0 &&
-              movieDetails.genres.map(genre => genre.name).join(', ')}
-          </p>
-        </div>
-      </div>
-      <p>Additional informations</p>
-      <ul>
-        <li>
-          <Link to="cast" state={{ from: backLink }}>
-            Cast
-          </Link>
-        </li>
+          <div className="movie-details">
+            <div>
+              <img
+                src={
+                  movieDetails.poster_path
+                    ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
+                    : defaultImg
+                }
+                width={250}
+                alt="poster"
+              />
+            </div>
+            <div>
+              <h1>{movieDetails.title}</h1>
+              <p>User Score: {movieDetails.vote_average}%</p>
+              <p>{movieDetails.overview}</p>
+              <p>
+                <strong>Overview</strong>
+              </p>
+              <p>{movieDetails.overview}</p>
+              <p>
+                <strong> Genres</strong>
+              </p>
+              <p>
+                {movieDetails.genres &&
+                  movieDetails.genres.length > 0 &&
+                  movieDetails.genres.map(genre => genre.name).join(', ')}
+              </p>
+            </div>
+          </div>
+          <div>
+            <p>Additional informations</p>
+            <ul>
+              <li>
+                <Link to="cast" state={{ from: backLink }}>
+                  Cast
+                </Link>
+              </li>
 
-        <li>
-          <Link to="reviews" state={{ from: backLink }}>
-            Reviews
-          </Link>
-        </li>
-      </ul>
+              <li>
+                <Link to="reviews" state={{ from: backLink }}>
+                  Reviews
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
       <Outlet />
     </div>
   );

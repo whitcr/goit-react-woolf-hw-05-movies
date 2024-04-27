@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [searchParams] = useSearchParams();
 
@@ -14,11 +15,17 @@ const Movies = () => {
     const value = searchParams.get('name');
 
     const fetchMovies = async () => {
-      if (value == null) return;
+      setIsLoading(true);
+
+      if (value == null) {
+        setIsLoading(false);
+        return;
+      }
 
       const data = await fetchDataSearchMovie(value);
 
       setMovies(data.results);
+      setIsLoading(false);
     };
     fetchMovies();
   }, [searchParams]);
@@ -26,8 +33,13 @@ const Movies = () => {
   return (
     <div>
       <SearchForm />
-      {searchParams && <MovieList movies={movies} />}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        movies.length > 0 && <MovieList movies={movies} />
+      )}
     </div>
   );
 };
+
 export default Movies;

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [Reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     if (!movieId) return;
@@ -19,15 +19,15 @@ const Reviews = () => {
   return (
     <div>
       <ul>
-        {Reviews.lenght === 0 ? (
-          Reviews.map(el => (
+        {reviews.lenght === 0 ? (
+          reviews.map(el => (
             <li key={el.id}>
               <p>{el.author}</p>
               <p>{el.content}</p>
             </li>
           ))
         ) : (
-          <p> No reviews</p>
+          <p>No reviews</p>
         )}
       </ul>
     </div>
